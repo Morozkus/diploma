@@ -4,7 +4,7 @@ import Login from './pages/Login/Login';
 import Tech from './pages/Tech/TechEdit';
 import Page from './pages';
 import TechList from './pages/Tech/TechList';
-import { firebaseAuth } from '../core/firebase';
+import { firebaseAuth } from '../core/firebase/auth';
 import TechEdit from './pages/Tech/TechEdit';
 
 const App = () => {
@@ -14,10 +14,10 @@ const App = () => {
 
     return <BrowserRouter>
         <Routes>
-            <Route element={<Page />}>
+            <Route path='/' element={<Page />}>
                 {
                     isAuth && <>
-                            <Route path='teches'>
+                            <Route>
                                 <Route index element={<TechList />} />
                                 <Route path=':techId'>
                                     <Route index element={<Tech />} />
@@ -25,7 +25,6 @@ const App = () => {
                                 </Route>
                             </Route>
                         </>
-                        
                 }
             </Route>
             {!isAuth && <Route path='*' element={<Login />} />}

@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
-import { firebaseAccountLogin } from '../../../core/firebase';
+import { firebaseAccountLogin } from '../../../core/firebase/auth';
 
 export default function Login() {
   const emailRef = useRef<HTMLInputElement>(null)
