@@ -14,20 +14,18 @@ const App = () => {
 
     return <BrowserRouter>
         <Routes>
-            <Route path='/' element={<Page />}>
-                {
-                    isAuth && <>
-                            <Route>
-                                <Route index element={<TechList />} />
-                                <Route path=':techId'>
-                                    <Route index element={<Tech />} />
-                                    <Route path='edit' element={<TechEdit />} />
-                                </Route>
-                            </Route>
-                        </>
-                }
-            </Route>
-            {!isAuth && <Route path='*' element={<Login />} />}
+            {isAuth
+                ? <Route path='/' element={<Page />}>
+
+                    <Route>
+                        <Route index element={<TechList />} />
+                        <Route path=':techId'>
+                            <Route index element={<Tech />} />
+                            <Route path='edit' element={<TechEdit />} />
+                        </Route>
+                    </Route>
+                </Route>
+                : <Route path='/' element={<Login />} />}
         </Routes>
     </BrowserRouter>
 }
