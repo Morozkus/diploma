@@ -1,6 +1,6 @@
 const TechList = () => {
   return (
-    <div>TechicList</div>
+    <div>TechList</div>
   )
 }
 

@@ -19,7 +19,7 @@ import { Outlet } from 'react-router-dom';
 import { Stack } from '@mui/material';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { collection } from 'firebase/firestore';
-import { firebaseStore } from '../../core/firebase/store';
+import { firebaseStore } from '../../global/firebase';
 
 const drawerWidth = 320;
 
@@ -82,7 +82,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function BasePage() {
+function BasePage() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -193,3 +193,5 @@ const CategoryList = () => {
     </ListItem>
   </List>
 }
+
+export default BasePage
