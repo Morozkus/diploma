@@ -19,7 +19,7 @@ import { Outlet } from 'react-router-dom';
 import { Stack } from '@mui/material';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { collection } from 'firebase/firestore';
-import { firebaseStore } from '../../global/firebase';
+import { firebaseStore } from '@/global/firebase';
 
 const drawerWidth = 320;
 

@@ -1,8 +1,8 @@
 import { Login } from '@mui/icons-material'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { firebaseAuth } from '../../firebase'
-import { BasePage, TechList, TechItem } from '../../../pages'
+import { firebaseAuth } from '@/global/firebase'
+import { BasePage, TechList, TechItem } from '@/pages'
 
 const AppRouter = () => {
     const [user] = useAuthState(firebaseAuth)
