@@ -1,8 +1,7 @@
-import { Login } from '@mui/icons-material'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { firebaseAuth } from '@/global/firebase'
-import { BasePage, TechList, TechItem } from '@/pages'
+import { BasePage, TechList, TechItem, Login } from '@/pages'
 
 const AppRouter = () => {
     const [user] = useAuthState(firebaseAuth)
@@ -30,7 +29,7 @@ const AuthRoutes = () => {
 
 const LoginRoutes = () => {
     return <Routes>
-        <Route path='/' element={<Login />} />
+        <Route path='*' element={<Login />} />
     </Routes>
 }
 
