@@ -24,14 +24,14 @@ export const useLoginForm = (emailInput: RefObject<HTMLInputElement | null>, pas
         const isEmailValid = validateField(
             email,
             validateLoginEmail,
-            "Проверьте правильность введеного логина",
+            "Неккоретный формат почты",
             setEmailErrorMessage
         );
 
         const isPasswordValid = validateField(
             password,
             validateLoginPassword,
-            "Неправильный пароль!",
+            "Пароль должен состоять минимум из 6 символов!",
             setPasswordErrorMessage
         );
 
@@ -54,8 +54,8 @@ export const useLoginForm = (emailInput: RefObject<HTMLInputElement | null>, pas
                 email.toString(),
                 password.toString(),
                 () => {
-                    setEmailErrorMessage("Проверьте корректность введенного логина")
-                    setPasswordErrorMessage("Пролверьте корректность введенного пароля")
+                    setEmailErrorMessage("Данный почтовый адрес не зарегистрирован")
+                    setPasswordErrorMessage("Неправильный пароль")
                 }
             )
         }
