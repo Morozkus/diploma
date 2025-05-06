@@ -6,16 +6,13 @@ import Button from '@mui/material/Button';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
-import { useLoginForm } from '../hooks/useLoginForm';
+import { useLoginForm } from '@/modules/LoginForm/hooks/useLoginForm';
 
 const LoginForm = () => {
     const emailRef = useRef<HTMLInputElement>(null)
     const passwordRef = useRef<HTMLInputElement>(null)
 
-    const { emailErrorMessage, passwordErrorMessage, handleSubmit } = useLoginForm(emailRef, passwordRef)
-
-    const emailError = Boolean(emailErrorMessage)
-    const passwordError = Boolean(passwordErrorMessage)
+    const { emailError, passwordError, handleSubmit } = useLoginForm(emailRef, passwordRef)
 
     return <LoginContainer>
         <HeaderText>
@@ -36,8 +33,8 @@ const LoginForm = () => {
                 <FormLabel htmlFor="email">Почта</FormLabel>
                 <TextField
                     inputRef={emailRef}
-                    error={Boolean(emailErrorMessage)}
-                    helperText={emailErrorMessage}
+                    error={emailError.hasError}
+                    helperText={emailError.errorMessage}
                     id="email"
                     type="email"
                     name="email"
@@ -54,8 +51,8 @@ const LoginForm = () => {
                 <FormLabel htmlFor="password">Пароль</FormLabel>
                 <TextField
                     inputRef={passwordRef}
-                    error={passwordError}
-                    helperText={passwordErrorMessage}
+                    error={passwordError.hasError}
+                    helperText={passwordError.errorMessage}
                     name="password"
                     placeholder="••••••"
                     type="password"

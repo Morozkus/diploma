@@ -2,19 +2,26 @@ import { RefObject, useState } from "react";
 import { login } from "../api/login";
 import { validateLoginEmail, validateLoginPassword } from "../helpers/validate";
 
+interface LoginFieldError {
+    hasError: boolean
+    errorMessage: string
+}
+
 export const useLoginForm = (emailInput: RefObject<HTMLInputElement | null>, passwordInput: RefObject<HTMLInputElement | null>) => {
-    const [emailErrorMessage, setEmailErrorMessage] = useState('');
-    const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+    const [emailError, setEmailError] = useState<LoginFieldError>({ hasError: false, errorMessage: "" });
+    const [passwordError, setPasswordError] = useState<LoginFieldError>({ hasError: false, errorMessage: "" });
 
     const validateField = (
         value: string | undefined,
         validator: (value: string) => boolean,
         errorMessage: string,
-        setError: (message: string) => void
+        setError: (error: LoginFieldError) => void
     ): boolean => {
         const isValid = value && validator(value);
-        setError(isValid ? '' : errorMessage);
-        return !!isValid;
+
+        setError(isValid ? { hasError: false, errorMessage: '' } : { hasError: true, errorMessage });
+
+        return Boolean(isValid);
     };
 
     const validateData = (): boolean => {
@@ -25,14 +32,14 @@ export const useLoginForm = (emailInput: RefObject<HTMLInputElement | null>, pas
             email,
             validateLoginEmail,
             "Неккоретный формат почты",
-            setEmailErrorMessage
+            setEmailError
         );
 
         const isPasswordValid = validateField(
             password,
             validateLoginPassword,
             "Пароль должен состоять минимум из 6 символов!",
-            setPasswordErrorMessage
+            setPasswordError
         );
 
         return isEmailValid && isPasswordValid;
@@ -54,16 +61,16 @@ export const useLoginForm = (emailInput: RefObject<HTMLInputElement | null>, pas
                 email.toString(),
                 password.toString(),
                 () => {
-                    setEmailErrorMessage("Данный почтовый адрес не зарегистрирован")
-                    setPasswordErrorMessage("Неправильный пароль")
+                    setEmailError({hasError: true, errorMessage: "Данный почтовый адрес не зарегистрирован"})
+                    setPasswordError({hasError: true, errorMessage: "Неправильный пароль"})
                 }
             )
         }
     }
 
     return {
-        emailErrorMessage,
-        passwordErrorMessage,
+        emailError,
+        passwordError,
         handleSubmit
     }
 }
