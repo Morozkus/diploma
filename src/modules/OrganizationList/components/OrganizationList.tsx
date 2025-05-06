@@ -5,10 +5,11 @@ import { Stack } from '@mui/material';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { collection } from 'firebase/firestore';
 import { firebaseStore } from '@/global/firebase';
+import OrganizationCreateModal from "@/modules/OrganizationList/components/OrganizationCreateModal";
 
 const OrganizationList = () => {
     const [organizations] = useCollectionData(collection(firebaseStore, "organization"))
-
+    console.log(organizations)
     return <Stack direction={"row"} gap={"1vw"} paddingRight={"1vw"}>
         {organizations?.map((organization) => (
             <ListItem key={organization.name} style={{ width: "auto" }} disablePadding>
@@ -17,11 +18,7 @@ const OrganizationList = () => {
                 </ListItemButton>
             </ListItem>
         ))}
-        <ListItem disablePadding>
-            <ListItemButton>
-                <ListItemText primary={"Добавить организацию"} />
-            </ListItemButton>
-        </ListItem>
+        <OrganizationCreateModal />
     </Stack>
 }
 
