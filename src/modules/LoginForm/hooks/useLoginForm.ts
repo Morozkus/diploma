@@ -17,11 +17,11 @@ export const useLoginForm = (emailInput: RefObject<HTMLInputElement | null>, pas
         errorMessage: string,
         setError: (error: LoginFieldError) => void
     ): boolean => {
-        const isValid = value && validator(value);
+        const isValid = Boolean(value && validator(value));
 
         setError(isValid ? { hasError: false, errorMessage: '' } : { hasError: true, errorMessage });
 
-        return Boolean(isValid);
+        return isValid;
     };
 
     const validateData = (): boolean => {
