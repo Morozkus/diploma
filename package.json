@@ -15,11 +15,13 @@
     "@mui/icons-material": "^6.4.8",
     "@mui/material": "^6.4.8",
     "add": "^2.0.6",
+    "ajv": "^8.17.1",
     "firebase": "^11.4.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "^7.4.0",
+    "uuid": "^11.1.0",
     "yarn": "^1.22.22"
   },
   "devDependencies": {

@@ -1,25 +1,18 @@
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import { Stack } from '@mui/material';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { collection } from 'firebase/firestore';
-import { firebaseStore } from '@/global/firebase';
 import OrganizationCreateModal from "@/modules/OrganizationList/components/OrganizationCreateModal";
+import { useOrganizationsData } from "@/modules/OrganizationList/hooks/useOrganizationsData";
+import { memo } from "react";
+import OrganizationItem from "@/modules/OrganizationList/components/OrganizationItem";
 
-const OrganizationList = () => {
-    const [organizations] = useCollectionData(collection(firebaseStore, "organization"))
-    console.log(organizations)
+const OrganizationList = memo(() => {
+    const organizations = useOrganizationsData()
+
     return <Stack direction={"row"} gap={"1vw"} paddingRight={"1vw"}>
-        {organizations?.map((organization) => (
-            <ListItem key={organization.name} style={{ width: "auto" }} disablePadding>
-                <ListItemButton>
-                    <ListItemText style={{ textWrap: "nowrap" }} primary={organization.name as string} />
-                </ListItemButton>
-            </ListItem>
-        ))}
+        {
+            organizations.map((organization) => <OrganizationItem organization={organization} />)
+        }
         <OrganizationCreateModal />
     </Stack>
-}
+})
 
 export default OrganizationList

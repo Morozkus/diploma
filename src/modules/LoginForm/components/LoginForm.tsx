@@ -13,7 +13,7 @@ const LoginForm = () => {
     const passwordRef = useRef<HTMLInputElement>(null)
 
     const { emailError, passwordError, handleSubmit } = useLoginForm(emailRef, passwordRef)
-    console.log(emailError)
+
     return <LoginContainer>
         <HeaderText>
             Авторизация

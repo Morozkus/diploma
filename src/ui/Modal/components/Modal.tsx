@@ -1,36 +1,42 @@
-import { SxProps } from "@mui/material";
-import Box, { type BoxProps } from '@mui/material/Box';
+import { Stack, StackProps, SxProps } from "@mui/material";
 import MUIModal from '@mui/material/Modal';
 import { useState, FC, PropsWithChildren, ReactNode } from 'react';
 
 interface ModalProps extends PropsWithChildren {
     trigger: ReactNode
 
-    outsideOpenState?: boolean
+    opened?: boolean
+    onChangeOpened?: (isOpen: boolean) => void
     closeOnInnerClick?: boolean
 
-    triggerContainerStyles?: BoxProps
-    popoverContainerStyles?: BoxProps
+    triggerContainerStyles?: StackProps
+    popoverContainerStyles?: StackProps
 }
 
-const Modal: FC<ModalProps> = ({ trigger, closeOnInnerClick = true, triggerContainerStyles, popoverContainerStyles, children }) => {
+const Modal: FC<ModalProps> = ({ trigger, opened, onChangeOpened, closeOnInnerClick = true, triggerContainerStyles, popoverContainerStyles, children }) => {
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleOpen = () => {
+        setOpen(true)
+        onChangeOpened?.(true)
+    };
+    const handleClose = () => {
+        setOpen(false)
+        onChangeOpened?.(false)
+    };
 
-    return <div>
-        <Box onClick={handleOpen} {...triggerContainerStyles}>
+    return <>
+        <Stack onClick={handleOpen} {...triggerContainerStyles}>
             {trigger}
-        </Box>
+        </Stack>
         <MUIModal
-            open={open}
+            open={opened ?? open}
             onClose={handleClose}
         >
-            <Box onClick={closeOnInnerClick ? handleClose : void 0} sx={style} {...popoverContainerStyles}>
+            <Stack onClick={closeOnInnerClick ? handleClose : void 0} sx={style} {...popoverContainerStyles}>
                 {children}
-            </Box>
+            </Stack>
         </MUIModal>
-    </div>
+    </>
 }
 
 const style: SxProps = {

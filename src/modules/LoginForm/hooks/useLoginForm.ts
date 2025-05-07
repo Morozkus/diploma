@@ -50,7 +50,7 @@ export const useLoginForm = (emailInput: RefObject<HTMLInputElement | null>, pas
 
         const isValid = validateData()
 
-        if (isValid) return void 0
+        if (!isValid) return void 0
 
         const data = new FormData(event.currentTarget);
         const email = data.get("email")
