@@ -13,7 +13,7 @@ const LoginForm = () => {
     const passwordRef = useRef<HTMLInputElement>(null)
 
     const { emailError, passwordError, handleSubmit } = useLoginForm(emailRef, passwordRef)
-
+    console.log(emailError)
     return <LoginContainer>
         <HeaderText>
             Авторизация
@@ -44,7 +44,7 @@ const LoginForm = () => {
                     required
                     fullWidth
                     variant="outlined"
-                    color={emailError ? 'error' : 'primary'}
+                    color={emailError.hasError ? 'error' : 'primary'}
                 />
             </FormControl>
             <FormControl>
@@ -62,7 +62,7 @@ const LoginForm = () => {
                     required
                     fullWidth
                     variant="outlined"
-                    color={passwordError ? 'error' : 'primary'}
+                    color={passwordError.hasError ? 'error' : 'primary'}
                 />
             </FormControl>
             <Button
