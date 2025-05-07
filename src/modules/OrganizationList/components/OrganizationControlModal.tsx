@@ -50,7 +50,7 @@ const OrganizationControlModal: FC<OrganizationControlModalProps> = ({ organizat
     >
         <Stack component={"form"} action={onSubmit} sx={{ gap: 1 }}>
             <HeaderText fontSize={24}>
-                Создание организации
+                Управление организацией
             </HeaderText>
             <TextField
                 defaultValue={organization.name}

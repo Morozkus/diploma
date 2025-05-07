@@ -1,23 +1,15 @@
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { collection } from 'firebase/firestore';
-import { firebaseStore } from '@/global/firebase';
 import CategoryCreateModal from "@/modules/CategoryList/components/CategoryCreateModal";
+import { useCategoryData } from "@/modules/CategoryList/hooks/useCategoryData";
+import CategoryItem from "@/modules/CategoryList/components/CategoryItem";
 
 const CategoryList = () => {
-    const [categories] = useCollectionData(collection(firebaseStore, "category"))
+    const categories = useCategoryData()
 
     return <List>
-        {categories?.map((category) => (
-            <ListItem key={category.name} disablePadding>
-                <ListItemButton>
-                    <ListItemText primary={category.name} />
-                </ListItemButton>
-            </ListItem>
-        ))}
+        {
+            categories.map((category) => <CategoryItem key={category.id} category={category} />)
+        }
 
         <CategoryCreateModal />
     </List>
