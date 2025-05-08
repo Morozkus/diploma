@@ -1,4 +1,5 @@
 import { useCategoryActions } from "@/modules/CategoryList/hooks/useCategoryActions"
+import { isNotEmptyValue } from "@/modules/CategoryList/lib/utils"
 import { ICategory } from "@/modules/CategoryList/types"
 import { Modal } from "@/ui/Modal"
 import { HeaderText } from "@/ui/Text"
@@ -15,14 +16,12 @@ const CategoryControlModal: FC<CategoryControlModalProps> = ({ category }) => {
     const { updateCategory, removeCategory } = useCategoryActions()
 
     const [, onSubmit] = useActionState(
-        async (_prevState: null, formData: FormData) => {
+        async (_: null, formData: FormData) => {
             const name = formData.get("categoryName") as string
 
-            if (name.trim().length) {
-                await updateCategory(category.id, name)
-
-                setPopoverOpen(false)
-            }
+            if (isNotEmptyValue(name))
+                updateCategory(category.id, name)
+                    .finally(() => setPopoverOpen(false))
 
             return null
         },

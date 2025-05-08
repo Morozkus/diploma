@@ -1,5 +1,6 @@
 import { ListButton } from '@/components/HeaderList';
 import { useOrganizationsActions } from "@/modules/OrganizationList/hooks/useOrganizationActions";
+import { isNotEmptyValue } from '@/modules/OrganizationList/lib/utils';
 import { Modal } from "@/ui/Modal";
 import { HeaderText } from "@/ui/Text";
 import { Button, Stack, TextField } from "@mui/material";
@@ -11,13 +12,12 @@ const OrganizationCreateModal = () => {
     const { addOrganization } = useOrganizationsActions()
 
     const [, onSubmit] = useActionState(
-        async (_prevState: null, formData: FormData) => {
+        async (_: null, formData: FormData) => {
             const name = formData.get("organizationName") as string
 
-            if (name.trim().length) {
-                await addOrganization(name)
-                setPopoverOpen(false)
-            }
+            if (isNotEmptyValue(name))
+                addOrganization(name)
+                    .finally(() => setPopoverOpen(false))
 
             return null
         },

@@ -1,4 +1,5 @@
 import { useOrganizationsActions } from "@/modules/OrganizationList/hooks/useOrganizationActions";
+import { isNotEmptyValue } from "@/modules/OrganizationList/lib/utils";
 import { IOrganization } from "@/modules/OrganizationList/types";
 import { Modal } from "@/ui/Modal";
 import { HeaderText } from "@/ui/Text";
@@ -15,25 +16,19 @@ const OrganizationControlModal: FC<OrganizationControlModalProps> = ({ organizat
     const { updateOrganization, removeOrganization } = useOrganizationsActions()
 
     const [, onSubmit] = useActionState(
-        async (_prevState: null, formData: FormData) => {
+        (_: null, formData: FormData) => {
             const name = formData.get("organizationName") as string
 
-            if (name.trim().length) {
-                await updateOrganization(organization.id, name)
-
-                setPopoverOpen(false)
-            }
+            if (isNotEmptyValue(name))
+                updateOrganization(organization.id, name)
+                    .finally(() => setPopoverOpen(false))
 
             return null
         },
         null
     )
 
-    const onRemove = async () => {
-        await removeOrganization(organization.id)
-
-        setPopoverOpen(false)
-    }
+    const onRemove = () => removeOrganization(organization.id).finally(() => setPopoverOpen(false))
 
     return <Modal
         trigger={
