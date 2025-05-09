@@ -3,13 +3,13 @@ import OrganizationCreateModal from "@/modules/OrganizationList/components/Organ
 import { useOrganizationsData } from "@/modules/OrganizationList/hooks/useOrganizationsData";
 import { memo } from "react";
 import OrganizationItem from "@/modules/OrganizationList/components/OrganizationItem";
-import { useCurrentOrganizationId, useSearchParamsSet } from '@/global/router';
+import { useCurrentOrganizationId, useSetSearchParams } from '@/global/router';
 import BlockSkeleton from '@/ui/Skeleton/BlockSkeleton';
 
 const OrganizationList = memo(() => {
     const { data: organizations, isLoading } = useOrganizationsData()
     const activeOrganization = useCurrentOrganizationId()
-    const setActiveOrganization = useSearchParamsSet()
+    const setActiveOrganization = useSetSearchParams()
 
     if (isLoading) {
         return <BlockSkeleton />

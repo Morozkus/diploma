@@ -6,7 +6,7 @@ export interface SearchParams {
     category: string
 }
 
-export const useSearchParamsSet = <T extends keyof SearchParams>() => {
+export const useSetSearchParams = <T extends keyof SearchParams>() => {
     const [, setSearchParams] = useSearchParams()
 
     return (key: T, value: SearchParams[T]) => setSearchParams((prevState) => {
