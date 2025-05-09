@@ -3,26 +3,13 @@ import { ListButton } from '@/components/HeaderList';
 import { Modal } from "@/ui/Modal";
 import { HeaderText } from "@/ui/Text";
 import { Stack, TextField, Button } from "@mui/material";
-import { useState, useActionState } from "react";
-import { useCategoryActions } from "@/modules/CategoryList/hooks/useCategoryActions";
-import { isNotEmptyValue } from '@/modules/CategoryList/lib/utils';
+import { useState } from "react";
+import { useCategoryFormAddAction } from "@/modules/CategoryList/hooks/useCategoryFormSubmitActions";
 
 const CategoryCreateModal = () => {
     const [popoverOpen, setPopoverOpen] = useState(false)
 
-    const { addCategory } = useCategoryActions()
-
-    const [, onSubmit] = useActionState(
-        async (_: null, formData: FormData) => {
-            const name = formData.get("techName") as string
-
-            if (isNotEmptyValue(name))
-                addCategory(name).finally(() => setPopoverOpen(false))
-
-            return null
-        },
-        null
-    )
+    const { fieldNames, onSubmit } = useCategoryFormAddAction(() => setPopoverOpen(false))
 
     return <Modal
         trigger={<ListButton text='Добавить категорию' icon={<AddIcon />} />}
@@ -35,7 +22,7 @@ const CategoryCreateModal = () => {
                 Создание категории техники
             </HeaderText>
             <TextField
-                name="techName"
+                name={fieldNames.categoryNameInput}
                 id="standard-basic"
                 label="Название категории"
                 variant="standard"

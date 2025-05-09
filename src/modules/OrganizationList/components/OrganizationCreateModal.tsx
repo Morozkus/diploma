@@ -1,28 +1,14 @@
 import { ListButton } from '@/components/HeaderList';
-import { useOrganizationsActions } from "@/modules/OrganizationList/hooks/useOrganizationActions";
-import { isNotEmptyValue } from '@/modules/OrganizationList/lib/utils';
+import { useOrganizationFormAddAction } from "@/modules/OrganizationList/hooks/useOrganizationFormSubmitActions";
 import { Modal } from "@/ui/Modal";
 import { HeaderText } from "@/ui/Text";
 import { Button, Stack, TextField } from "@mui/material";
-import { useActionState, useState } from "react";
+import { useState } from "react";
 
 const OrganizationCreateModal = () => {
     const [popoverOpen, setPopoverOpen] = useState(false)
 
-    const { addOrganization } = useOrganizationsActions()
-
-    const [, onSubmit] = useActionState(
-        async (_: null, formData: FormData) => {
-            const name = formData.get("organizationName") as string
-
-            if (isNotEmptyValue(name))
-                addOrganization(name)
-                    .finally(() => setPopoverOpen(false))
-
-            return null
-        },
-        null
-    )
+    const { fieldNames, onSubmit } = useOrganizationFormAddAction(() => setPopoverOpen(false))
 
     return <Modal
         trigger={<ListButton text='Добавить организацию' />}
@@ -35,7 +21,7 @@ const OrganizationCreateModal = () => {
                 Создание организации
             </HeaderText>
             <TextField
-                name="organizationName"
+                name={fieldNames.organizationNameInput}
                 id="standard-basic"
                 label="Название организации"
                 variant="standard"

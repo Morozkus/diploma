@@ -1,10 +1,10 @@
-import { useOrganizationsActions } from "@/modules/OrganizationList/hooks/useOrganizationActions";
-import { isNotEmptyValue } from "@/modules/OrganizationList/lib/utils";
+import { removeOrganization } from "@/modules/OrganizationList/api/firestore/organizationActions";
+import { useOrganizationFormUpdateAction } from "@/modules/OrganizationList/hooks/useOrganizationFormSubmitActions";
 import { IOrganization } from "@/modules/OrganizationList/types";
 import { Modal } from "@/ui/Modal";
 import { HeaderText } from "@/ui/Text";
 import { Button, ListItem, ListItemButton, ListItemText, Stack, TextField } from "@mui/material";
-import { FC, useActionState, useState } from "react";
+import { FC, useState } from "react";
 
 interface OrganizationItemProps {
 	organization: IOrganization
@@ -15,19 +15,7 @@ interface OrganizationItemProps {
 const OrganizationItem: FC<OrganizationItemProps> = ({ organization, isActive, onSelect }) => {
 	const [popoverOpen, setPopoverOpen] = useState(false)
 
-	const { updateOrganization, removeOrganization } = useOrganizationsActions()
-
-	const [, onSubmit] = useActionState(
-		(_: null, formData: FormData) => {
-			const name = formData.get("organizationName") as string
-
-			if (isNotEmptyValue(name)) updateOrganization(organization.id, name)
-					
-
-			return null
-		},
-		null
-	)
+	const { fieldNames, onSubmit } = useOrganizationFormUpdateAction(organization)
 
 	const onRemove = () => removeOrganization(organization.id)
 
@@ -50,14 +38,14 @@ const OrganizationItem: FC<OrganizationItemProps> = ({ organization, isActive, o
 			</HeaderText>
 			<TextField
 				defaultValue={organization.name}
-				name="organizationName"
+				name={fieldNames.organizationNameInput}
 				id="standard-basic"
 				label="Название организации"
 				variant="standard"
 				fullWidth
 			/>
 			<Stack onClick={() => setPopoverOpen(false)} flexDirection="row" sx={{ mt: 4, gap: 2 }}>
-			<Button variant="contained" onClick={onSelect}>Выбрать</Button>
+				<Button variant="contained" onClick={onSelect}>Выбрать</Button>
 				<Button type="submit" variant="contained">Переименовать</Button>
 				<Button variant="contained" onClick={onRemove}>Удалить</Button>
 			</Stack>

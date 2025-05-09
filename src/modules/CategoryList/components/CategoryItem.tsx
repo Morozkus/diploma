@@ -1,10 +1,10 @@
-import { useCategoryActions } from "@/modules/CategoryList/hooks/useCategoryActions"
-import { isNotEmptyValue } from "@/modules/CategoryList/lib/utils"
+import { removeCategory } from "@/modules/CategoryList/api/firestore/categoryActions"
+import { useCategoryFormUpdateAction } from "@/modules/CategoryList/hooks/useCategoryFormSubmitActions"
 import { ICategory } from "@/modules/CategoryList/types"
 import { Modal } from "@/ui/Modal"
 import { HeaderText } from "@/ui/Text"
 import { ListItem, ListItemButton, ListItemText, Stack, TextField, Button } from "@mui/material"
-import { useState, useActionState, FC } from "react"
+import { useState, FC } from "react"
 
 interface CategoryItemProps {
     category: ICategory,
@@ -15,21 +15,9 @@ interface CategoryItemProps {
 const CategoryItem: FC<CategoryItemProps> = ({ category, isActive, onSelect }) => {
     const [popoverOpen, setPopoverOpen] = useState(false)
 
-    const { updateCategory, removeCategory } = useCategoryActions()
+    const { fieldNames, onSubmit } = useCategoryFormUpdateAction(category)
 
-    const [, onSubmit] = useActionState(
-        async (_: null, formData: FormData) => {
-            const name = formData.get("categoryName") as string
-
-            if (isNotEmptyValue(name))
-                updateCategory(category.id, name)
-
-            return null
-        },
-        null
-    )
-
-    const onRemove = async () => removeCategory(category.id)
+    const onRemove = () => removeCategory(category.id)
 
     return <Modal
         trigger={
@@ -50,7 +38,7 @@ const CategoryItem: FC<CategoryItemProps> = ({ category, isActive, onSelect }) =
             </HeaderText>
             <TextField
                 defaultValue={category.name}
-                name="categoryName"
+                name={fieldNames.categoryNameInput}
                 id="standard-basic"
                 label="Название категории"
                 variant="standard"
