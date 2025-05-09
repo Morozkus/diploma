@@ -1,7 +1,7 @@
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { firebaseAuth } from '@/global/firebase'
-import { BasePage, TechList, TechItem, Login } from '@/pages'
+import { BasePage, Teches, Tech, Login } from '@/pages'
 
 const AppRouter = () => {
     const [user] = useAuthState(firebaseAuth)
@@ -17,10 +17,10 @@ const AuthRoutes = () => {
     return <Routes>
         <Route path='/' element={<BasePage />}>
             <Route>
-                <Route index element={<TechList />} />
+                <Route index element={<Teches />} />
                 <Route path=':techId'>
-                    <Route index element={<TechItem />} />
-                    <Route path='edit' element={<TechItem />} />
+                    <Route index element={<Tech />} />
+                    <Route path='edit' element={<Tech />} />
                 </Route>
             </Route>
         </Route>

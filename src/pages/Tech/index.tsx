@@ -1,7 +1,7 @@
-const TechItem = () => {
+const Tech = () => {
     return (
       <div>TechnicEdit</div>
     )
   }
   
-  export default TechItem
+  export default Tech
