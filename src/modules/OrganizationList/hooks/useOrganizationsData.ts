@@ -3,10 +3,10 @@ import { organizationCollection } from "@/modules/OrganizationList/store/collect
 import { IOrganization } from "@/modules/OrganizationList/types"
 import { useCollectionData } from "react-firebase-hooks/firestore"
 
-export const useOrganizationsData = (): IOrganization[] => {
-    const [organizations] = useCollectionData(organizationCollection)
+export const useOrganizationsData = (): { data: IOrganization[], isLoading: boolean } => {
+    const [organizations, isLoading] = useCollectionData(organizationCollection)
 
-    if (!organizations) return []
+    if (!organizations) return { data: [], isLoading }
 
-    return organizations.filter((data) => validateOrganization(data))
+    return { data: organizations.filter((data) => validateOrganization(data)), isLoading }
 }

@@ -21,20 +21,19 @@ const OrganizationItem: FC<OrganizationItemProps> = ({ organization, isActive, o
 		(_: null, formData: FormData) => {
 			const name = formData.get("organizationName") as string
 
-			if (isNotEmptyValue(name))
-				updateOrganization(organization.id, name)
-					.finally(() => setPopoverOpen(false))
+			if (isNotEmptyValue(name)) updateOrganization(organization.id, name)
+					
 
 			return null
 		},
 		null
 	)
 
-	const onRemove = () => removeOrganization(organization.id).finally(() => setPopoverOpen(false))
+	const onRemove = () => removeOrganization(organization.id)
 
 	return <Modal
 		trigger={
-			<ListItem key={organization.name} style={{ width: "auto", background: isActive ? "gray" : void 0 }} disablePadding>
+			<ListItem style={{ width: "auto", background: isActive ? "gray" : void 0 }} disablePadding>
 				<ListItemButton>
 					<ListItemText style={{ textWrap: "nowrap" }} primary={organization.name} />
 				</ListItemButton>

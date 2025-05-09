@@ -33,7 +33,7 @@ const CategoryItem: FC<CategoryItemProps> = ({ category, isActive, onSelect }) =
 
     return <Modal
         trigger={
-            <ListItem key={category.name} disablePadding>
+            <ListItem disablePadding>
                 <ListItemButton selected={isActive}>
                     <ListItemText primary={category.name} />
                 </ListItemButton>

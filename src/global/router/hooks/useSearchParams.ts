@@ -10,7 +10,9 @@ export const useSearchParamsSet = <T extends keyof SearchParams>() => {
     const [, setSearchParams] = useSearchParams()
 
     return (key: T, value: SearchParams[T]) => setSearchParams((prevState) => {
-        prevState.set(key, value)
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        value ? prevState.set(key, value) : prevState.delete(key)
 
         return prevState
     })
