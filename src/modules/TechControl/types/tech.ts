@@ -6,6 +6,6 @@ export interface ITech {
     organization: DocumentReference
     mark: string
     status: DocumentReference
-    statusHistory: string[]
+    statusHistory: DocumentReference[]
     title: string
 }
