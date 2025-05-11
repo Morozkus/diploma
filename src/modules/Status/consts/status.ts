@@ -1,0 +1,1 @@
+export const STATUS_COLLECTION_NAME = "status"

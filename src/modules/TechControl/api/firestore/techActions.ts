@@ -1,16 +1,12 @@
 import { getTechDocumentByPath } from "@/modules/TechControl/store/collection"
 import { ITech } from "@/modules/TechControl/types/tech"
-import { deleteDoc, setDoc, updateDoc } from "firebase/firestore"
+import { deleteDoc, serverTimestamp, setDoc } from "firebase/firestore"
 import { v4 } from "uuid"
 
-export const addTech = (tech: Omit<ITech, "id">) => {
-    const id = v4()
+export const setTech = (tech: Omit<ITech, "id"> & {id: string | undefined}) => {
+    const id = tech.id ? tech.id : v4()
 
-    return setDoc(getTechDocumentByPath([id]), tech)
-}
-
-export const updateTech = (tech: Partial<ITech> & { id: string }) => {
-    return updateDoc(getTechDocumentByPath([tech.id]), tech)
+    return setDoc(getTechDocumentByPath([id]), { ...tech, id, created_at: serverTimestamp() })
 }
 
 export const removeTech = (id: string) => {

@@ -1,24 +1,22 @@
 import { useCurrentCategoryId, useCurrentOrganizationId } from "@/global/router"
+import { getCategoryDocumentByPath } from "@/modules/CategoryList/store/collection"
+import { getOrganizationDocumentByPath } from "@/modules/OrganizationList/store/collection"
 import validateTech from "@/modules/TechControl/api/schema/validateTech"
-import { techCollection } from "@/modules/TechControl/store/collection"
+import { getTechQueryByFilters } from "@/modules/TechControl/store/collection"
 import { ITech } from "@/modules/TechControl/types/tech"
-import { query, where } from "firebase/firestore"
+import { where } from "firebase/firestore"
 import { useCollectionData } from "react-firebase-hooks/firestore"
 
 export const useTechesByOrganizationAndCategory = (): ITech[] => {
     const organization = useCurrentOrganizationId()
     const category = useCurrentCategoryId()
 
-    const organizationFilter = organization ? where("organization", "==", organization) : where("organization", "!=", null)
-    const categoryFilter = category ? where("category", "==", category) : where("category", "!=", null)
+    const organizationFilter = organization ? where("organization", "==", getOrganizationDocumentByPath([organization])) : void 0
+    const categoryFilter = category ? where("category", "==", getCategoryDocumentByPath([category])) : void 0
 
-    const teches = useCollectionData(query(
-        techCollection,
-        organizationFilter,
-        categoryFilter
-    ))
-
-    const validatedTeches = teches.filter((tech) => validateTech(tech))
+    const [teches] = useCollectionData(getTechQueryByFilters(categoryFilter, organizationFilter), { initialValue: [] })
+    console.log(teches)
+    const validatedTeches = (teches ?? []).filter((tech) => validateTech(tech))
 
     return validatedTeches
 }
