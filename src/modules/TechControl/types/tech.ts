@@ -8,4 +8,6 @@ export interface ITech {
     status: DocumentReference
     statusHistory: DocumentReference[]
     title: string
+    created_at?: string
+    end_time_at?: string
 }

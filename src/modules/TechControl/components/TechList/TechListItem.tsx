@@ -35,10 +35,15 @@ const TechListItem: FC<TechListItemProps> = ({ tech }) => {
             <BodyText>
                 Статус: {status?.name}
             </BodyText>
+            <BodyText>
+                Создано: {tech?.created_at}
+            </BodyText>
+            <BodyText>
+                Дата конца эксплуатации: {tech?.end_time_at}
+            </BodyText>
         </Stack>
 
         <Stack direction={"row"} spacing={2} alignItems={"center"}>
-            <Button variant="outlined">Подробнее</Button>
             <TechModal trigger={<Button variant="outlined">Редактировать</Button>} tech={tech} />
             <Modal trigger={<Button variant="outlined">Удалить</Button>}>
                 <BodyText textAlign={"center"}>Вы уверены, что хотите удалить запись о {tech.title} ?</BodyText>

@@ -49,6 +49,7 @@ const TechModalContent: FC<TechModalContentProps> = ({ tech, closeParentModal })
     const [selectCategory, setSelectCategory] = useState(tech?.category.id ?? currentCategoryId ?? undefined)
     const [selectStatus, setSelectStatus] = useState<string | undefined>(tech?.status.id ?? undefined)
     const [mark, setMark] = useState(tech?.mark ?? "")
+    const [date, setDate] = useState(tech?.end_time_at ?? "")
 
     const validatedFormData = validateTechFormData({ title: techName, category: selectCategory, organization: selectOrganization, status: selectStatus })
 
@@ -60,12 +61,13 @@ const TechModalContent: FC<TechModalContentProps> = ({ tech, closeParentModal })
             category: getCategoryDocumentByPath([selectCategory as string]),
             organization: getOrganizationDocumentByPath([selectOrganization as string]),
             status: getStatusDocumentByPath([selectStatus as string]),
-            statusHistory: []
+            statusHistory: [],
+            end_time_at: date,
         })
         closeParentModal()
     }
 
-    return <Stack spacing={2}>
+    return <Stack spacing={1.5}>
         <HeaderText fontSize={24}>
             Добавление техники
         </HeaderText>
@@ -120,6 +122,9 @@ const TechModalContent: FC<TechModalContentProps> = ({ tech, closeParentModal })
                 }
             </Select>
         </FormControl>
+        
+        <input type="date" defaultValue={date} onChange={(event) => setDate(new Date(event.target.value).toLocaleDateString())} />
+
         <TextField
             value={mark}
             onChange={(event) => setMark(event.target.value)}
@@ -129,7 +134,9 @@ const TechModalContent: FC<TechModalContentProps> = ({ tech, closeParentModal })
             variant="standard"
             fullWidth
         />
-        <Button onClick={onAddTech} type="submit" variant="contained" sx={{ mt: 4 }} disabled={!validatedFormData.isValid}>Создать</Button>
+        <Button onClick={onAddTech} type="submit" variant="contained" sx={{ mt: 4 }} disabled={!validatedFormData.isValid}>
+            {tech ? <>Редактировать</> : <>Создать</>}
+        </Button>
     </Stack>
 }
 

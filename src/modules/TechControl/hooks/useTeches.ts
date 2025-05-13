@@ -15,7 +15,7 @@ export const useTechesByOrganizationAndCategory = (): ITech[] => {
     const categoryFilter = category ? where("category", "==", getCategoryDocumentByPath([category])) : void 0
 
     const [teches] = useCollectionData(getTechQueryByFilters(categoryFilter, organizationFilter), { initialValue: [] })
-    console.log(teches)
+
     const validatedTeches = (teches ?? []).filter((tech) => validateTech(tech))
 
     return validatedTeches

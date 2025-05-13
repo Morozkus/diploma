@@ -12,7 +12,9 @@ const schema: JSONSchemaType<ITech> = {
         organization: { type: "object", required: ["id", "converter", "firestore", "parent", "path", "type", "withConverter"] },
         mark: { type: "string" },
         status: { type: "object", required: ["id", "converter", "firestore", "parent", "path", "type", "withConverter"] },
-        statusHistory: { type: "array", items: { type: "string" } }
+        statusHistory: { type: "array", items: { type: "object", required: ["id", "converter", "firestore", "parent", "path", "type", "withConverter"] } },
+        created_at: { type: "string", nullable: true, },
+        end_time_at: { type: "string", nullable: true, },
     }
 }
 

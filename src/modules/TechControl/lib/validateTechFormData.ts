@@ -14,7 +14,7 @@ export const validateTechFormData = (fields: ValidateFields): { isValid: boolean
     const title = titleValidate(fields.title)
     const category = categoryValidate(fields.category)
     const organization = organizationValidate(fields.organization)
-    const status = statusValidate(fields.category)
+    const status = statusValidate(fields.status)
 
     return {
         isValid: title.isValid && category.isValid && organization.isValid && status.isValid,
