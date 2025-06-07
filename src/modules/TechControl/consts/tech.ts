@@ -1,1 +1,0 @@
-export const TECH_COLLECTION_NAME = "technic"

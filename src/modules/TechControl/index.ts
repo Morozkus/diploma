@@ -1,1 +1,0 @@
-export { default as TechList } from "./components/TechList/TechList"

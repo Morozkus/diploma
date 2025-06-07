@@ -1,1 +1,0 @@
-export const isNotEmptyValue = (value: string) => Boolean(value.trim().length)
