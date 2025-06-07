@@ -1,5 +1,5 @@
 import ajvInstance from "@/global/ajv";
-import { ITech } from "@/modules/TechControl/types/tech";
+import { ITech } from "@/global/types/entity/Tech"
 import { JSONSchemaType } from "ajv";
 
 const schema: JSONSchemaType<ITech> = {

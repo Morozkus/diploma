@@ -1,6 +1,6 @@
 import { addOrganization, updateOrganization } from "@/modules/OrganizationList/api/firestore/organizationActions"
 import { isNotEmptyValue } from "@/modules/OrganizationList/lib/utils"
-import { IOrganization } from "@/modules/OrganizationList/types"
+import { IOrganization } from "@/global/types/entity/Organization";
 import { useActionState } from "react"
 
 const ORGANIZATION_FORM_ADD_ACTION_FIELDS = {

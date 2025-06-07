@@ -3,7 +3,7 @@ import { useOrganization } from "@/modules/OrganizationList/hooks/useOrganizatio
 import { useStatus } from "@/modules/Status/hooks/useStatusData"
 import { removeTech } from "@/modules/TechControl/api/firestore/techActions"
 import TechModal from "@/modules/TechControl/components/TechModal/TechModal"
-import { ITech } from "@/modules/TechControl/types/tech"
+import { ITech } from "@/global/types/entity/Tech"
 import { Modal } from "@/ui/Modal"
 import { BodyText, HeaderText } from "@/ui/Text"
 import { Button, Stack } from "@mui/material"

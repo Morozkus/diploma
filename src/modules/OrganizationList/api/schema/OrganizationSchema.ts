@@ -1,5 +1,5 @@
 import ajvInstance from "@/global/ajv";
-import { IOrganization } from "@/modules/OrganizationList/types";
+import { IOrganization } from "@/global/types/entity/Organization";
 import { JSONSchemaType } from "ajv";
 
 const schema: JSONSchemaType<IOrganization> = {

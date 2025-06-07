@@ -1,5 +1,5 @@
 import ajvInstance from "@/global/ajv";
-import { IStatus } from "@/modules/Status/types/status";
+import { IStatus } from "@/global/types/entity/Status";
 import { JSONSchemaType } from "ajv";
 
 const schema: JSONSchemaType<IStatus> = {

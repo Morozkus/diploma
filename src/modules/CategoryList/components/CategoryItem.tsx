@@ -1,6 +1,6 @@
+import { ICategory } from "@/global/types/entity/Category"
 import { removeCategory } from "@/modules/CategoryList/api/firestore/categoryActions"
 import { useCategoryFormUpdateAction } from "@/modules/CategoryList/hooks/useCategoryFormSubmitActions"
-import { ICategory } from "@/modules/CategoryList/types"
 import { Modal } from "@/ui/Modal"
 import { HeaderText } from "@/ui/Text"
 import { ListItem, ListItemButton, ListItemText, Stack, TextField, Button } from "@mui/material"

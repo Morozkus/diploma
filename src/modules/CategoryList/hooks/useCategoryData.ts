@@ -1,6 +1,6 @@
+import { ICategory } from "@/global/types/entity/Category"
 import validateCategory from "@/modules/CategoryList/api/schema/CategorySchema"
 import { categoryCollection } from "@/modules/CategoryList/store/collection"
-import { ICategory } from "@/modules/CategoryList/types"
 import { DocumentReference } from "firebase/firestore"
 import { useCollectionData, useDocumentData } from "react-firebase-hooks/firestore"
 

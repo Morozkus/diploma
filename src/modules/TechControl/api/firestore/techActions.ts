@@ -1,5 +1,5 @@
+import { ITech } from "@/global/types/entity/Tech"
 import { getTechDocumentByPath } from "@/modules/TechControl/store/collection"
-import { ITech } from "@/modules/TechControl/types/tech"
 import { deleteDoc, setDoc } from "firebase/firestore"
 import { v4 } from "uuid"
 

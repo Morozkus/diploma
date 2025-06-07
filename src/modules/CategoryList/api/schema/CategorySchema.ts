@@ -1,5 +1,5 @@
 import ajvInstance from "@/global/ajv";
-import { ICategory } from "@/modules/CategoryList/types";
+import { ICategory } from "@/global/types/entity/Category";
 import { JSONSchemaType } from "ajv";
 
 const schema: JSONSchemaType<ICategory> = {

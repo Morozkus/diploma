@@ -3,7 +3,7 @@ import { getCategoryDocumentByPath } from "@/modules/CategoryList/store/collecti
 import { getOrganizationDocumentByPath } from "@/modules/OrganizationList/store/collection"
 import validateTech from "@/modules/TechControl/api/schema/validateTech"
 import { getTechQueryByFilters } from "@/modules/TechControl/store/collection"
-import { ITech } from "@/modules/TechControl/types/tech"
+import { ITech } from "@/global/types/entity/Tech"
 import { where } from "firebase/firestore"
 import { useCollectionData } from "react-firebase-hooks/firestore"
 

@@ -1,6 +1,6 @@
+import { ICategory } from "@/global/types/entity/Category"
 import { addCategory, updateCategory } from "@/modules/CategoryList/api/firestore/categoryActions"
 import { isNotEmptyValue } from "@/modules/CategoryList/lib/utils"
-import { ICategory } from "@/modules/CategoryList/types"
 import { useActionState } from "react"
 
 const CATEGORY_FORM_ADD_ACTION_FIELDS = {

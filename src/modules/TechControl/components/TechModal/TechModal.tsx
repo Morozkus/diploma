@@ -7,7 +7,7 @@ import { getStatusDocumentByPath } from "@/modules/Status/api/firestore/collecti
 import { useStatuses } from "@/modules/Status/hooks/useStatusData"
 import { setTech } from "@/modules/TechControl/api/firestore/techActions"
 import { validateTechFormData } from "@/modules/TechControl/lib/validateTechFormData"
-import { ITech } from "@/modules/TechControl/types/tech"
+import { ITech } from "@/global/types/entity/Tech"
 import { Modal } from "@/ui/Modal"
 import { HeaderText } from "@/ui/Text"
 import { Stack, TextField, Button, Select, MenuItem, InputLabel, FormControl } from "@mui/material"
