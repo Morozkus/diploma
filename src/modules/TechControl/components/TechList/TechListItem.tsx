@@ -45,13 +45,15 @@ const TechInfo: FC<TechListItemProps> = ({ tech }) => {
 const ControlPanel: FC<TechListItemProps> = ({ tech }: { tech: ITech }) => {
     return (
         <Stack
-            flexBasis={"35%"}
-            direction={"row"}
-            alignItems={"center"}
-            flexWrap={"wrap"}
-            justifyContent={"flex-end"}
-            spacing={2}
-            rowGap={1}
+            sx={{
+                flexBasis: { md: "35%", xs: "100%" },
+                justifyContent: { md: "flex-end", xs: "flex-start" },
+                flexDirection: "row",
+                alignItems: "center",
+                flexWrap: "wrap",
+                columnGap: 2,
+                rowGap: 1,
+            }}
         >
             <TechModal
                 trigger={<ModalButton text="Редактировать" />}
