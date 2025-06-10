@@ -1,12 +1,14 @@
 import { styled } from "@mui/material";
 
-const BaseLayout = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
+const BaseLayout = styled("main", {
+    shouldForwardProp: (prop) => prop !== "open",
+})<{
     open?: boolean;
-    drawerWidth: number
+    drawerWidth: number;
 }>(({ theme, drawerWidth }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
     }),
@@ -15,7 +17,7 @@ const BaseLayout = styled('main', { shouldForwardProp: (prop) => prop !== 'open'
         {
             props: ({ open }) => open,
             style: {
-                transition: theme.transitions.create('margin', {
+                transition: theme.transitions.create("margin", {
                     easing: theme.transitions.easing.easeOut,
                     duration: theme.transitions.duration.enteringScreen,
                 }),
@@ -25,4 +27,4 @@ const BaseLayout = styled('main', { shouldForwardProp: (prop) => prop !== 'open'
     ],
 }));
 
-export default BaseLayout
+export default BaseLayout;
