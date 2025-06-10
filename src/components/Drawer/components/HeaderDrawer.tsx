@@ -1,41 +1,50 @@
-import { Drawer, IconButton, Divider, useTheme } from '@mui/material'
-import { FC, PropsWithChildren } from 'react'
-import HeaderDrawerContainer from './HeaderDrawerContainer'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { Drawer, IconButton, Divider, Tooltip } from "@mui/material";
+import { FC, PropsWithChildren } from "react";
+import HeaderDrawerContainer from "./HeaderDrawerContainer";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import HeaderDrawerViewSettings from "@/components/Drawer/components/HeaderDrawerViewSettings";
 
 interface HeaderDrawerProps {
-    drawerWidth: number
-    open: boolean
-    handleDrawerClose: () => void
+    drawerWidth: number;
+    open: boolean;
+    handleDrawerClose: () => void;
 }
 
-const HeaderDrawer: FC<PropsWithChildren<HeaderDrawerProps>> = ({ drawerWidth, open, children, handleDrawerClose }) => {
-    const theme = useTheme();
-
-    return <Drawer
-        sx={{
-            width: drawerWidth,
-            flexShrink: 0,
-            '& .MuiDrawer-paper': {
+const HeaderDrawer: FC<PropsWithChildren<HeaderDrawerProps>> = ({
+    drawerWidth,
+    open,
+    children,
+    handleDrawerClose,
+}) => {
+    return (
+        <Drawer
+            sx={{
                 width: drawerWidth,
-                boxSizing: 'border-box',
-            },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-    >
-        <HeaderDrawerContainer>
-            <IconButton onClick={handleDrawerClose}>
-                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-            </IconButton>
-        </HeaderDrawerContainer>
+                flexShrink: 0,
+                "& .MuiDrawer-paper": {
+                    width: drawerWidth,
+                    boxSizing: "border-box",
+                },
+            }}
+            variant="persistent"
+            anchor="left"
+            open={open}
+        >
+            <HeaderDrawerContainer style={{ justifyContent: "space-between" }}>
+                <HeaderDrawerViewSettings />
 
-        <Divider />
+                <Tooltip title="Скрыть боковую панель">
+                    <IconButton onClick={handleDrawerClose}>
+                        <ChevronLeftIcon />
+                    </IconButton>
+                </Tooltip>
+            </HeaderDrawerContainer>
 
-        {children}
-    </Drawer>
-}
+            <Divider />
 
-export default HeaderDrawer
+            {children}
+        </Drawer>
+    );
+};
+
+export default HeaderDrawer;
