@@ -4,7 +4,7 @@ import { BodyText, HeaderText } from "@/ui/Text";
 import { Button, Stack } from "@mui/material";
 import { FC, memo } from "react";
 import { useTechData } from "@/modules/TechControl/hooks/useTechData";
-import TechRemoveModal from "@/modules/TechControl/components/TechList/TechRemoveModal";
+import TechRemoveModal from "@/modules/TechControl/components/TechesView/TechRemoveModal";
 
 interface TechListItemProps {
     tech: ITech;

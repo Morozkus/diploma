@@ -1,1 +1,1 @@
-export { default as TechList } from "./components/TechList/TechList"
+export { default as TechesView } from "./components/TechesView/TechesView"

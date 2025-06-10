@@ -1,6 +1,6 @@
 import TechModal from "@/modules/TechControl/components/TechModal/TechModal";
-import TechListEmpty from "@/modules/TechControl/components/TechList/TechListEmpty";
-import TechListItem from "@/modules/TechControl/components/TechList/TechListItem";
+import TechListEmpty from "@/modules/TechControl/components/TechesView/List/TechListEmpty";
+import TechListItem from "@/modules/TechControl/components/TechesView/List/TechListItem";
 import { useTechesByOrganizationAndCategory } from "@/modules/TechControl/hooks/useTeches";
 import { Stack } from "@mui/material";
 import TechAddTrigger from "@/modules/TechControl/components/TechModal/TechAddTrigger";
