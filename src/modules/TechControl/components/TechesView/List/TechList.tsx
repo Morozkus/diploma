@@ -2,8 +2,8 @@ import TechModal from "@/modules/TechControl/components/TechModal/TechModal";
 import TechListEmpty from "@/modules/TechControl/components/TechesView/List/TechListEmpty";
 import TechListItem from "@/modules/TechControl/components/TechesView/List/TechListItem";
 import { useTechesByOrganizationAndCategory } from "@/modules/TechControl/hooks/useTeches";
-import { Stack } from "@mui/material";
-import TechAddTrigger from "@/modules/TechControl/components/TechModal/TechAddTrigger";
+import { Button, Stack } from "@mui/material";
+import { HeaderText } from "@/ui/Text";
 
 const TechList = () => {
     const teches = useTechesByOrganizationAndCategory();
@@ -17,6 +17,21 @@ const TechList = () => {
                 <TechListEmpty />
             )}
         </Stack>
+    );
+};
+
+const TechAddTrigger = () => {
+    return (
+        <Button
+            sx={{
+                alignItems: "center",
+                justifyContent: "center",
+                padding: 2,
+            }}
+            variant="outlined"
+        >
+            <HeaderText fontWeight={"bold"}>Добавить технику</HeaderText>
+        </Button>
     );
 };
 

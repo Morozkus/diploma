@@ -69,7 +69,7 @@ const ControlPanel: FC<TechListItemProps> = ({ tech }: { tech: ITech }) => {
 };
 
 const ModalButton = ({ text }: { text: string }) => {
-    return <Button variant="outlined">{text}</Button>;
+    return <Button variant="contained">{text}</Button>;
 };
 
 export default TechListItem;
