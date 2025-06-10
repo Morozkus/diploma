@@ -5,7 +5,7 @@ import {
 import { FC, PropsWithChildren, useState } from "react";
 
 const ListViewSettingsWrapper: FC<PropsWithChildren> = ({ children }) => {
-    const [activeView, setView] = useState<ViewSettings["activeView"]>("list");
+    const [activeView, setView] = useState<ViewSettings["activeView"]>("table");
 
     return (
         <ListViewSettingsContext value={{ activeView, setView }}>

@@ -11,6 +11,8 @@ interface ModalProps extends PropsWithChildren {
 
     triggerContainerStyles?: StackProps;
     popoverContainerStyles?: StackProps;
+
+    container?: boolean;
 }
 
 const Modal: FC<ModalProps> = ({
@@ -20,6 +22,7 @@ const Modal: FC<ModalProps> = ({
     closeOnInnerClick = true,
     triggerContainerStyles,
     popoverContainerStyles,
+    container = false,
     children,
 }) => {
     const [open, setOpen] = useState(false);
@@ -34,7 +37,11 @@ const Modal: FC<ModalProps> = ({
 
     return (
         <>
-            <Stack onClick={handleOpen} {...triggerContainerStyles}>
+            <Stack
+                onClick={handleOpen}
+                {...triggerContainerStyles}
+                display={container ? "contents" : "flex"}
+            >
                 {trigger}
             </Stack>
             <MUIModal open={opened ?? open} onClose={handleClose}>

@@ -26,15 +26,21 @@ import { FC, ReactNode, useState } from "react";
 
 interface TechModalProps {
     trigger: ReactNode;
+    container?: boolean;
     tech?: ITech;
 }
 
-const TechModal: FC<TechModalProps> = ({ trigger, tech }) => {
+const TechModal: FC<TechModalProps> = ({
+    trigger,
+    container = false,
+    tech,
+}) => {
     const [isOpen, setOpen] = useState(false);
 
     return (
         <Modal
             trigger={trigger}
+            container={container}
             closeOnInnerClick={false}
             onChangeOpened={setOpen}
             opened={isOpen}
