@@ -1,16 +1,15 @@
 import { styled } from "@mui/material";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 
 interface AppBarProps extends MuiAppBarProps {
     open?: boolean;
-    drawerWidth: number
+    drawerwidth: number;
 }
 
-
 const HeaderBarContainer = styled(MuiAppBar, {
-    shouldForwardProp: (prop) => prop !== 'open',
-})<AppBarProps>(({ theme, drawerWidth }) => ({
-    transition: theme.transitions.create(['margin', 'width'], {
+    shouldForwardProp: (prop) => prop !== "open",
+})<AppBarProps>(({ theme, drawerwidth }) => ({
+    transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
     }),
@@ -18,9 +17,9 @@ const HeaderBarContainer = styled(MuiAppBar, {
         {
             props: ({ open }) => open,
             style: {
-                width: `calc(100% - ${drawerWidth}px)`,
-                marginLeft: `${drawerWidth}px`,
-                transition: theme.transitions.create(['margin', 'width'], {
+                width: `calc(100% - ${drawerwidth}px)`,
+                marginLeft: `${drawerwidth}px`,
+                transition: theme.transitions.create(["margin", "width"], {
                     easing: theme.transitions.easing.easeOut,
                     duration: theme.transitions.duration.enteringScreen,
                 }),
@@ -29,4 +28,4 @@ const HeaderBarContainer = styled(MuiAppBar, {
     ],
 }));
 
-export default HeaderBarContainer
+export default HeaderBarContainer;

@@ -31,7 +31,7 @@ const BasePageView = () => {
             <LeftDrawer open={open} onClose={handleDrawerClose} />
             <BaseLayout
                 onClick={closeDrawerOnOutsideClick}
-                drawerWidth={DRAWER_WIDTH}
+                drawerwidth={DRAWER_WIDTH}
                 sx={{
                     paddingLeft: open ? DRAWER_WIDTH + "px" : void 0,
                 }}
@@ -52,7 +52,7 @@ const Header = ({
 }) => {
     return (
         <HeaderBar
-            drawerWidth={DRAWER_WIDTH}
+            drawerwidth={DRAWER_WIDTH}
             open={open}
             handleDrawerOpen={onDrawerOpen}
         >
@@ -70,7 +70,7 @@ const LeftDrawer = ({
 }) => {
     return (
         <HeaderDrawer
-            drawerWidth={DRAWER_WIDTH}
+            drawerwidth={DRAWER_WIDTH}
             open={open}
             handleDrawerClose={onClose}
         >

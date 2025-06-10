@@ -6,13 +6,13 @@ import HeaderDrawerViewSettings from "@/components/Drawer/components/HeaderDrawe
 import HeaderDrawerSearchTechInput from "@/components/Drawer/components/HeaderDrawerSearchTechInput";
 
 interface HeaderDrawerProps {
-    drawerWidth: number;
+    drawerwidth: number;
     open: boolean;
     handleDrawerClose: () => void;
 }
 
 const HeaderDrawer: FC<PropsWithChildren<HeaderDrawerProps>> = ({
-    drawerWidth,
+    drawerwidth,
     open,
     children,
     handleDrawerClose,
@@ -20,10 +20,10 @@ const HeaderDrawer: FC<PropsWithChildren<HeaderDrawerProps>> = ({
     return (
         <Drawer
             sx={{
-                width: drawerWidth,
+                width: drawerwidth,
                 flexShrink: 0,
                 "& .MuiDrawer-paper": {
-                    width: drawerWidth,
+                    width: drawerwidth,
                     boxSizing: "border-box",
                 },
             }}
