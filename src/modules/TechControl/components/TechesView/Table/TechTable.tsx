@@ -23,6 +23,8 @@ const TechTable = () => {
                 overflowX: "auto",
             }}
         >
+            <TechAddRow />
+
             <Table sx={{ flex: 1 }} aria-label="Таблица техники">
                 <Header />
                 <Body />
@@ -55,7 +57,6 @@ const Body = memo(() => {
 
     return (
         <TableBody>
-            <TechAddRow />
             {teches.length ? (
                 teches.map((tech) => <TechTableRow key={tech.id} tech={tech} />)
             ) : (
