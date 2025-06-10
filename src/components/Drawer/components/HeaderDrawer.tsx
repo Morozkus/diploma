@@ -1,8 +1,9 @@
-import { Drawer, IconButton, Divider, Tooltip } from "@mui/material";
+import { Drawer, IconButton, Divider, Tooltip, Stack } from "@mui/material";
 import { FC, PropsWithChildren } from "react";
 import HeaderDrawerContainer from "./HeaderDrawerContainer";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import HeaderDrawerViewSettings from "@/components/Drawer/components/HeaderDrawerViewSettings";
+import HeaderDrawerSearchTechInput from "@/components/Drawer/components/HeaderDrawerSearchTechInput";
 
 interface HeaderDrawerProps {
     drawerWidth: number;
@@ -30,15 +31,23 @@ const HeaderDrawer: FC<PropsWithChildren<HeaderDrawerProps>> = ({
             anchor="left"
             open={open}
         >
-            <HeaderDrawerContainer style={{ justifyContent: "space-between" }}>
-                <HeaderDrawerViewSettings />
+            <Stack>
+                <HeaderDrawerContainer
+                    style={{ justifyContent: "space-between" }}
+                >
+                    <HeaderDrawerViewSettings />
 
-                <Tooltip title="Скрыть боковую панель">
-                    <IconButton onClick={handleDrawerClose}>
-                        <ChevronLeftIcon />
-                    </IconButton>
-                </Tooltip>
-            </HeaderDrawerContainer>
+                    <Tooltip title="Скрыть боковую панель">
+                        <IconButton onClick={handleDrawerClose}>
+                            <ChevronLeftIcon />
+                        </IconButton>
+                    </Tooltip>
+                </HeaderDrawerContainer>
+
+                <HeaderDrawerContainer>
+                    <HeaderDrawerSearchTechInput />
+                </HeaderDrawerContainer>
+            </Stack>
 
             <Divider />
 

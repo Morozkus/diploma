@@ -1,11 +1,11 @@
-import { ListViewSettingsWrapper } from "@/components/Drawer";
+import { DrawerContextWrapper } from "@/components/Drawer";
 import BasePageView from "@/pages/BasePage/components/BasePageView";
 
 const BasePage = () => {
     return (
-        <ListViewSettingsWrapper>
+        <DrawerContextWrapper>
             <BasePageView />
-        </ListViewSettingsWrapper>
+        </DrawerContextWrapper>
     );
 };
 
