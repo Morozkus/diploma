@@ -26,12 +26,15 @@ const BasePageView = () => {
         open ? handleDrawerClose() : void 0;
 
     return (
-        <Box sx={{ display: "flex", height: "100dvh" }}>
+        <Box sx={{ display: "flex", height: "100dvh", overflowX: "hidden" }}>
             <Header open={open} onDrawerOpen={handleDrawerOpen} />
             <LeftDrawer open={open} onClose={handleDrawerClose} />
             <BaseLayout
                 onClick={closeDrawerOnOutsideClick}
                 drawerWidth={DRAWER_WIDTH}
+                sx={{
+                    paddingLeft: open ? DRAWER_WIDTH + "px" : void 0,
+                }}
             >
                 <HeaderDrawerContainer />
                 <Teches />
