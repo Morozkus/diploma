@@ -1,10 +1,10 @@
 import { createContext } from "react";
 
 export interface ViewSettings {
-    activeView: "list" | "table" | "board";
+    activeView: "list" | "table";
     setView?: (view: ViewSettings["activeView"]) => void;
 }
 
 export const ListViewSettingsContext = createContext<ViewSettings>({
-    activeView: "board",
+    activeView: "table",
 });

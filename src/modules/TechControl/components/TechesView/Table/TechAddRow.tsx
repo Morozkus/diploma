@@ -1,6 +1,6 @@
 import TechModal from "@/modules/TechControl/components/TechModal/TechModal";
 import { HeaderText } from "@/ui/Text";
-import { TableRow, TableCell } from "@mui/material";
+import { TableRow, TableCell, Button } from "@mui/material";
 
 const TechAddRow = () => {
     return (
@@ -21,9 +21,11 @@ const TechAddRow = () => {
                         colSpan={10}
                         align="center"
                     >
-                        <HeaderText fontWeight={"bold"}>
-                            Добавить новую организационную технику
-                        </HeaderText>
+                        <Button variant="contained">
+                            <HeaderText fontWeight={"bold"}>
+                                Добавить новую организационную технику
+                            </HeaderText>
+                        </Button>
                     </TableCell>
                 </TableRow>
             }

@@ -9,6 +9,7 @@ import { useTechesByOrganizationAndCategory } from "@/modules/TechControl/hooks/
 import TechAddRow from "@/modules/TechControl/components/TechesView/Table/TechAddRow";
 import TechTableEmpty from "@/modules/TechControl/components/TechesView/Table/TechTableEmpty";
 import TechTableRow from "@/modules/TechControl/components/TechesView/Table/TechTableRow";
+import { memo } from "react";
 
 const TechTable = () => {
     return (
@@ -44,7 +45,7 @@ const Header = () => {
     );
 };
 
-const Body = () => {
+const Body = memo(() => {
     const teches = useTechesByOrganizationAndCategory();
 
     return (
@@ -57,6 +58,6 @@ const Body = () => {
             )}
         </TableBody>
     );
-};
+});
 
 export default TechTable;
