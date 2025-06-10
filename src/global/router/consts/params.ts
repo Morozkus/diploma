@@ -1,2 +1,5 @@
-export const ORGANIZATION_PARAM_NAME = "organization"
-export const CATEGORY_PARAM_NAME = "category"
+export const SEARCH_PARAMS = {
+    ORGANIZATION: "organization",
+    CATEGORY: "category",
+    STATUS: "status"
+} as const

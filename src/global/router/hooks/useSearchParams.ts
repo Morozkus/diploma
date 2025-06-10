@@ -1,9 +1,10 @@
-import { CATEGORY_PARAM_NAME, ORGANIZATION_PARAM_NAME } from "@/global/router/consts/params"
+import { SEARCH_PARAMS } from "@/global/router/consts/params"
 import { useSearchParams } from "react-router-dom"
 
 export interface SearchParams {
     organization: string
     category: string
+    status: string
 }
 
 export const useSetSearchParams = <T extends keyof SearchParams>() => {
@@ -21,11 +22,17 @@ export const useSetSearchParams = <T extends keyof SearchParams>() => {
 export const useCurrentOrganizationId = () => {
     const [searchParams] = useSearchParams()
 
-    return searchParams.get(ORGANIZATION_PARAM_NAME)
+    return searchParams.get(SEARCH_PARAMS.ORGANIZATION)
 }
 
 export const useCurrentCategoryId = () => {
     const [searchParams] = useSearchParams()
 
-    return searchParams.get(CATEGORY_PARAM_NAME)
+    return searchParams.get(SEARCH_PARAMS.CATEGORY)
+}
+
+export const useCurrentStatusId = () => {
+    const [searchParams] = useSearchParams()
+
+    return searchParams.get(SEARCH_PARAMS.STATUS)
 }
