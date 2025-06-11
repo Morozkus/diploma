@@ -1,1 +1,1 @@
-export { default as TechesView } from "./components/TechesView/TechesView"
+export { default as TechesView } from "./components/TechesView/TechesView";

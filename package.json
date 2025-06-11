@@ -23,6 +23,7 @@
     "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "^7.4.0",
     "uuid": "^11.1.0",
+    "xlsx": "^0.18.5",
     "yarn": "^1.22.22"
   },
   "devDependencies": {

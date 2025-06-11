@@ -11,6 +11,7 @@ import TechTableEmpty from "@/modules/TechControl/components/TechesView/Table/Te
 import TechTableRow from "@/modules/TechControl/components/TechesView/Table/TechTableRow";
 import { memo } from "react";
 import { Skeleton } from "@mui/material";
+import TechTableDownload from "@/modules/TechControl/components/TechesView/Table/TechTableDownload";
 
 const TechTable = () => {
     return (
@@ -24,6 +25,7 @@ const TechTable = () => {
                 }}
             >
                 <TechAddRow />
+                <TechTableDownload />
 
                 <Table sx={{ flex: 1 }} aria-label="Таблица техники">
                     <Header />
