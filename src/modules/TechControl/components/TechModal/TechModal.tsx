@@ -23,6 +23,7 @@ import {
     FormControl,
 } from "@mui/material";
 import { FC, ReactNode, useState } from "react";
+import { useCurrentStatusId } from "@/global/router/hooks/useSearchParams";
 
 interface TechModalProps {
     trigger: ReactNode;
@@ -68,6 +69,7 @@ const TechModalContent: FC<TechModalContentProps> = ({
 
     const currentOrgainzationId = useCurrentOrganizationId();
     const currentCategoryId = useCurrentCategoryId();
+    const currentStatusId = useCurrentStatusId();
 
     const [techName, setTechName] = useState(tech?.title ?? "");
     const [selectOrganization, setSelectOrganization] = useState(
@@ -77,7 +79,7 @@ const TechModalContent: FC<TechModalContentProps> = ({
         tech?.category.id ?? currentCategoryId ?? undefined
     );
     const [selectStatus, setSelectStatus] = useState<string | undefined>(
-        tech?.status.id ?? undefined
+        tech?.status.id ?? currentStatusId ?? undefined
     );
     const [mark, setMark] = useState(tech?.mark ?? "");
     const [date, setDate] = useState(tech?.end_time_at ?? "");
@@ -107,7 +109,9 @@ const TechModalContent: FC<TechModalContentProps> = ({
 
     return (
         <Stack spacing={1.5}>
-            <HeaderText fontSize={24}>Добавление техники</HeaderText>
+            <HeaderText fontSize={24}>
+                {tech ? "Добавление техники" : "Редактирование техники"}
+            </HeaderText>
             <TextField
                 label="Название техники"
                 variant="standard"

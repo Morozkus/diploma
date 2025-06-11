@@ -48,8 +48,8 @@ const Modal: FC<ModalProps> = ({
                 <Stack
                     onClick={closeOnInnerClick ? handleClose : void 0}
                     sx={{
-                        height: "100%",
-                        maxHeight: "600px",
+                        height: "auto",
+                        maxHeight: "100dvh",
                         overflow: "auto",
                         ...style,
                     }}
