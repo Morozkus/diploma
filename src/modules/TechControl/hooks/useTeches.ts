@@ -7,7 +7,7 @@ import { getOrganizationDocumentByPath } from "@/modules/OrganizationList/store/
 import validateTech from "@/modules/TechControl/api/schema/validateTech";
 import { getTechQueryByFilters } from "@/modules/TechControl/store/collection";
 import { ITech } from "@/global/types/entity/Tech";
-import { where } from "firebase/firestore";
+import { orderBy, where } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useCurrentStatusId } from "@/global/router/hooks/useSearchParams";
 import { getStatusDocumentByPath } from "@/modules/Status/api/firestore/collection";
@@ -35,7 +35,7 @@ export const useTechesByOrganizationAndCategory = (): [ITech[], boolean] => {
     const techSubnameStart = name ? where("title", ">=", name) : void 0;
     const techSubnameEnd = name
         ? where("title", "<=", name + "\uf8ff")
-        : void 0;
+        : orderBy("title");
 
     const [teches, loading] = useCollectionData(
         getTechQueryByFilters(
