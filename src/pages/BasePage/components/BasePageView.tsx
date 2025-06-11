@@ -1,13 +1,11 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import Box from "@mui/material/Box";
 import BaseLayout from "./BaseLayout";
 import { HeaderBar } from "@/components/HeaderBar";
 import { HeaderDrawer, HeaderDrawerContainer } from "@/components/Drawer";
-import { CategoryList } from "@/modules/CategoryList";
 import { OrganizationList } from "@/modules/OrganizationList";
 import Teches from "@/pages/Teches";
-import StatusList from "@/modules/Status/components/StatusList";
-import { Divider } from "@mui/material";
+import { Divider, Skeleton, Stack } from "@mui/material";
 
 const DRAWER_WIDTH = 320;
 
@@ -61,6 +59,8 @@ const Header = ({
     );
 };
 
+const LazyLeftDrawerContent = lazy(() => import("./LeftDrawerContent"));
+
 const LeftDrawer = ({
     open,
     onClose,
@@ -74,10 +74,22 @@ const LeftDrawer = ({
             open={open}
             handleDrawerClose={onClose}
         >
-            <StatusList />
-            <Divider />
-            <CategoryList />
+            {open ? (
+                <Suspense fallback={<DrawerFallback />}>
+                    <LazyLeftDrawerContent />
+                </Suspense>
+            ) : null}
         </HeaderDrawer>
+    );
+};
+
+const DrawerFallback = () => {
+    return (
+        <Stack>
+            <Skeleton height={200} />
+            <Divider />
+            <Skeleton height={200} />
+        </Stack>
     );
 };
 

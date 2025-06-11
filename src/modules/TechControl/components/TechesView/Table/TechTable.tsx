@@ -10,6 +10,7 @@ import TechAddRow from "@/modules/TechControl/components/TechesView/Table/TechAd
 import TechTableEmpty from "@/modules/TechControl/components/TechesView/Table/TechTableEmpty";
 import TechTableRow from "@/modules/TechControl/components/TechesView/Table/TechTableRow";
 import { memo } from "react";
+import { Skeleton } from "@mui/material";
 
 const TechTable = () => {
     return (
@@ -53,7 +54,9 @@ const Header = () => {
 };
 
 const Body = memo(() => {
-    const teches = useTechesByOrganizationAndCategory();
+    const [teches, loading] = useTechesByOrganizationAndCategory();
+
+    if (loading) return <LoadingBody />;
 
     return (
         <TableBody>
@@ -65,5 +68,27 @@ const Body = memo(() => {
         </TableBody>
     );
 });
+
+const LoadingBody = () => {
+    return (
+        <TableBody>
+            <TableRow>
+                <TableCell colSpan={10}>
+                    <Skeleton height={50} />
+                </TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell colSpan={10}>
+                    <Skeleton height={50} />
+                </TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell colSpan={10}>
+                    <Skeleton height={50} />
+                </TableCell>
+            </TableRow>
+        </TableBody>
+    );
+};
 
 export default TechTable;
