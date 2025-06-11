@@ -13,23 +13,23 @@ import { memo } from "react";
 
 const TechTable = () => {
     return (
-        <TableContainer
-            component={Paper}
-            sx={{
-                margin: "0 auto",
-                flex: 1,
-                width: "100%",
-                maxWidth: { lg: "100%", xs: "85dvw" },
-                overflowX: "auto",
-            }}
-        >
-            <TechAddRow />
+        <Paper sx={{ flex: 1, width: 100 }}>
+            <TableContainer
+                sx={{
+                    margin: "0 auto",
+                    flex: 1,
+                    width: "100%",
+                    overflowX: "auto",
+                }}
+            >
+                <TechAddRow />
 
-            <Table sx={{ flex: 1 }} aria-label="Таблица техники">
-                <Header />
-                <Body />
-            </Table>
-        </TableContainer>
+                <Table sx={{ flex: 1 }} aria-label="Таблица техники">
+                    <Header />
+                    <Body />
+                </Table>
+            </TableContainer>
+        </Paper>
     );
 };
 

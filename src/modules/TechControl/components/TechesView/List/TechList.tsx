@@ -9,7 +9,7 @@ const TechList = () => {
     const teches = useTechesByOrganizationAndCategory();
 
     return (
-        <Stack spacing={2}>
+        <Stack flex={1} spacing={2}>
             <TechModal trigger={<TechAddTrigger />} />
             {teches.length ? (
                 teches.map((tech) => <TechListItem key={tech.id} tech={tech} />)
