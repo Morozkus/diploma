@@ -47,7 +47,12 @@ const Modal: FC<ModalProps> = ({
             <MUIModal open={opened ?? open} onClose={handleClose}>
                 <Stack
                     onClick={closeOnInnerClick ? handleClose : void 0}
-                    sx={style}
+                    sx={{
+                        height: "100%",
+                        maxHeight: "600px",
+                        overflow: "auto",
+                        ...style,
+                    }}
                     {...popoverContainerStyles}
                 >
                     {children}
